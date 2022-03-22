@@ -3,49 +3,54 @@ function getType(obj) {
 }
 
 
-function clone (obj) {
+function clone(obj) {
+  // 定义一个变量来保存结果
+  let res
+  
+  // 获取参数类型
   const type = getType(obj)
-
-  let res 
- 
+  
   switch(type) {
-    /* 如果obj是函数 */
-    case 'Function': 
-    const reg = /function\((.*)\).*\{([^\}]*)\}/
-    const matches = obj.toString().match(reg)
-    let params = matches[1]?.split(', ') || null
-    let functionBody = matches[2]
-    if (params) {
-      res = new Function(...params, functionBody)
-    } else {
-      res = new Function(functionBody)
-    }
-
-    
-    break;
-    /* 如果obj是正则 */
-    case 'RegExp':
-      res = new RegExp(obj)
-      break;
-      /* 如果obj是日期 */
-    case 'Date':
-      res = new Date(obj)
-      break;
-    
-      /* 如果是普通对象 */
-    case 'Object':
-    case 'Array':
-      res = Array.isArray(obj) ? [] : {}
-      for (let key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          res[key] = obj[key]
-        }
+      // 函数
+      case 'Function':
+      const reg = /function\((.*)\).*\{([^\}]*)\}/
+      const matches = obj.toString().match(reg)
+      if (matches) {
+          let [, args, functionBody] = matches
+          // 对args处理成数组格式
+          args = args.split(',').map(param => param.trim())
+          res = new Function(...args, functionBody)
       }
-      break;
-      /* 如果obj是基本数据类型 */
-      default:
-        res = obj
+      break
+      // 正则
+      case 'RegExp':
+      res = new RegExp(obj)
+      break
+      // 日期
+      case 'Date':
+      res = new Date(obj)
+      break
+      // 对象
+      case 'Object':
+      res = Object.assign({}, obj)
+      break
+      // 数组
+      case 'Array':
+      res = [].slice.call(obj)
+      // res = Array.isArray(obj) ? [] : {}
+      // for (let key in obj) {
+      //     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      //         res[key] = obj[key]
+      //     }
+      // }
+      break
+      // 其他类型
+      default: 
+      res = obj
+      
+      
   }
+  
   return res
 }
 
@@ -75,3 +80,7 @@ console.log(clone(reg));
 let date = new Date()
 
 console.log(clone(date));
+
+// 测试基本数据类型
+console.log(clone(123));
+console.log(clone(false));

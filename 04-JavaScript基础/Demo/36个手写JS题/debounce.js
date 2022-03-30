@@ -3,9 +3,9 @@
 /* 要实现一个防抖函数， */
 
 function debounce (fn, delay) {
-  const self = this 
-  let timer 
+  let timer  = null
   return function() {
+    let self = this 
     let args = arguments
     if (timer) clearTimeout(timer)
 

@@ -32,3 +32,8 @@ function dom2Tree(dom) {
   return root
 }
 
+
+function add(a, b) {
+  return a + b 
+}
+

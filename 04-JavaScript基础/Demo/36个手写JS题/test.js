@@ -1,11 +1,8 @@
-var x = 1;
-function f(x, y = function() {x = 3; console.log(x)}) {
-  console.log(x)
-  var x = 2 
-  y()
-  console.log(x)
+function add(a, b = 2) {
+  var x = 1
+  return a + b
 }
-f()
-console.log(x)
+
+add(1)
 
 

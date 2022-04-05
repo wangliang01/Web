@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/mustache.js/4.0.1/mustache.js"></script>
+</head>
+<body>
+  
+  <script>
+      var list = [
+      {
+        name: '张三',age: 19, sex: '男'
+      },
+      {
+        name: '李四',age: 17, sex: '女'
+      },
+      {
+        name: '王五',age: 18, sex: '男'
+      },
+    ]
+
+    const templateStr = `
+      <ul>
+        {{#list}}
+        <li>
+          <div class="hd">{{name}}的基本信息</div>
+          <div class="bd">
+            <p>姓名：{{name}}</p>
+            <p>年龄：{{age}}</p>
+            <p>性别：{{sex}}</p>
+          </div>
+        </li>
+        {{/list}}
+      </ul>
+    `
+
+    const html = Mustache.render(templateStr, {list})
+    console.log(html);
+
+    document.body.innerHTML = html
+
+  </script>
+</body>
+</html>

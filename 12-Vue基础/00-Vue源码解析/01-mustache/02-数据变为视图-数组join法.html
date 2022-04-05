@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul class="list">
+    
+  </ul>
+  <script>
+      var list = [
+      {
+        name: '张三',age: 19, sex: '男'
+      },
+      {
+        name: '李四',age: 17, sex: '女'
+      },
+      {
+        name: '王五',age: 18, sex: '男'
+      },
+    ]
+
+    var ul = document.querySelector('.list')
+
+    for (let i = 0; i < list.length; i++) {
+      ul.innerHTML += [
+        '<li>',
+          '<div class="hd">'+ list[i].name+'的基本信息</div>',
+          '<div class="bd">',
+            '<p>姓名：'+ list[i].name +'</p>',
+            '<p>年龄：'+ list[i].age +'</p>',
+            '<p>性别：'+ list[i].sex +'</p>',
+          '</div>',
+        '</li>'
+      ].join('')
+    }
+  </script>
+</body>
+</html>

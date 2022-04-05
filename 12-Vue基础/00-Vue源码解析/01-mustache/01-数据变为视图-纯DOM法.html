@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul class="list">
+    <!-- <li>
+      <div class="hd">张三的基本信息</div>
+      <div class="bd">
+        <p>姓名：张三</p>
+        <p>年龄：19</p>
+        <p>性别：男</p>
+      </div>
+    </li> -->
+  </ul>
+  <script>
+    var list = [
+      {
+        name: '张三',age: 19, sex: '男'
+      },
+      {
+        name: '李四',age: 17, sex: '女'
+      },
+      {
+        name: '王五',age: 18, sex: '男'
+      },
+    ]
+
+    console.log(list);
+
+    var ul = document.querySelector('.list')
+
+    for (var i = 0; i < list.length; i++) {
+      const li = document.createElement('li')
+      const hd = document.createElement('div')
+      hd.className = 'hd'
+      hd.innerText = `${list[i].name}的基本信息`
+      const bd = document.createElement('div')
+      bd.className = 'bd'
+      for (let key in list[i]) {
+        const p = document.createElement('p')
+        if (key === 'name') {
+          p.innerText = `姓名：${list[i].name}`
+        } else if (key === 'age') {
+          p.innerText = `年龄：${list[i].age}`
+        } else if (key === 'sex') {
+          p.innerText = `性别：${list[i].sex}`
+        }
+        bd.appendChild(p)
+      }
+      li.appendChild(hd)
+      li.appendChild(bd)
+      ul.appendChild(li)
+    }
+  </script>
+</body>
+</html>

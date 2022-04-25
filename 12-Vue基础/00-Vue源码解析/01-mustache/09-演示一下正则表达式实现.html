@@ -21,6 +21,31 @@
 
     console.log(templateStr);
 
+    /* 
+    <div>
+      <ul>
+          {{#arr}}
+            <li>{{.}}</li>
+          {{/arr}}
+      </ul>
+    </div>
+
+    转换成：
+
+    [
+      ['text', '<div><ul>'],
+      ['#', 'arr', [
+        ['text', '<li>'],
+        ['name', '.'],
+        ['text', '</li>'],
+      ]],
+      ['text', '</ul></div>']
+    ]
+    
+    模板字符串 =》 tokens => dom字符串
+    */
+
+
 
   </script>
 </body>

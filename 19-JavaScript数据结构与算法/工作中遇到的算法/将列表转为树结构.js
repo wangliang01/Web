@@ -15,7 +15,7 @@ let arr = [
 */
 
 
-function listToTree(list) {
+function listToTree(list, rootId = 0) {
   let res = []
   const hashMap = {}
   for (let item of list) {
@@ -26,7 +26,7 @@ function listToTree(list) {
 
     // 将该项也存入hashMap
     hashMap[id] = item
-    if (pid === 0) {
+    if (pid === rootId) {
       // 如果pid为0时
       res.push(item)
     } else {
@@ -45,4 +45,34 @@ function listToTree(list) {
 
   return res
 }
+
+/* 
+  {id: 1, name: '部门1', pid: 0},
+  {id: 2, name: '部门2', pid: 1},
+  {id: 3, name: '部门3', pid: 1},
+  {id: 4, name: '部门4', pid: 3},
+  {id: 5, name: '部门5', pid: 4},
+*/
+
+
+
+/**
+* 转换方法
+*/
+function listToTree (list, result = [], pid = 0) {
+  for (const item of list) {
+    if (item.pid === pid) {
+      const newItem = {...item, children: []};
+      result.push(newItem);
+      listToTree(list, newItem.children, item.id);
+    }
+  }
+  return result
+}
+
+
+
+console.log(JSON.stringify(listToTree(arr)));
+
+
 

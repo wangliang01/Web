@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: rgb(108, 144, 168);
+    }
+    @keyframes circleLeft {
+      0% {
+        transform: rotate(225deg);
+      }
+      100% {
+        transform: rotate(45deg);
+      }
+    }
+    @keyframes circleRight {
+      0% {
+        transform: rotate(135deg);
+      }
+      100% {
+        transform: rotate(-45deg);
+      }
+    }
+    .process-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .process {
+      position: absolute;
+      top: 0;
+      width: 300px;
+      height: 150px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .left {
+      left: 0;
+    }
+    .right {
+      right: 0;
+    }
+    .circle {
+      position: absolute;
+      top: 0;
+      width: 150px;
+      height: 150px;
+      border: 3px solid transparent;
+      border-radius: 50%;
+      transition: all 0.3s;
+      
+    }
+    .circle-left {
+      left: 0;
+      border-left: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      transform: rotate(45deg);
+      animation: circleLeft 1.3s ease 0.5s;
+    }
+    .circle-right {
+      right: 0;
+      border-right: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      transform: rotate(-45deg);
+      animation: circleRight 1.3s ease 1.7s;
+    }
+  </style>
+</head>
+<body>
+  <div class="process-wrapper">
+    <div class="process left">
+      <div class="circle circle-left"></div>
+    </div>
+    <div class="process right">
+      <div class="circle circle-right"></div>
+    </div>
+  </div>
+</body>
+</html>

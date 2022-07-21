@@ -62,7 +62,10 @@ function listToTree(list, rootId = 0) {
 function listToTree (list, result = [], pid = 0) {
   for (const item of list) {
     if (item.pid === pid) {
-      const newItem = {...item, children: []};
+      let newItem 
+      if (!item.children) {
+         newItem = {...item, children: []};
+      }
       result.push(newItem);
       listToTree(list, newItem.children, item.id);
     }
